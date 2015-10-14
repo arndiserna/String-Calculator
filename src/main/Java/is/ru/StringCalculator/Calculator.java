@@ -4,16 +4,30 @@ public class Calculator {
 
 public static int add(String text)
  {
-	int value = 0;
-    String[] numberArray = text.split(",");
-    
-    for (String number : numberArray)
-    {
-        if (!number.isEmpty()) 
-        {
-            value += Integer.parseInt(number);
-        }
-    }
-    return value;	
+	if(text.equals(""))
+	{
+		return 0;
+	}
+	else if(text.contains(","))
+	{
+		return sum(splitNumbers(text));
+	}
+		return Integer.parseInt(text);
  }
+
+private static String[] splitNumbers(String numbers){
+    return numbers.split(",");
+}
+
+private static int sum(String[] numbers){
+	int total = 0;
+	
+    for(String number : numbers){
+    	if (!number.isEmpty())
+    	{
+    		total += Integer.parseInt(number);
+    	}
+	}
+	return total;
+}
 }
