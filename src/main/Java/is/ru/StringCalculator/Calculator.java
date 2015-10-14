@@ -9,9 +9,20 @@ public static int add(String text)
 	String numbers = text;
 	    if (text.startsWith("//")) 
 	    {
-	        int delimiterIndex = text.indexOf("//") + 2;
-	        delimiter = text.substring(delimiterIndex, delimiterIndex + 1);
-	        numbers = text.substring(text.indexOf("\n") + 1);
+	    	if(text.contains("["))
+	    	{
+	    		int delimiterBeginIndex = text.indexOf("[");
+	    		int delimiterEndIndex = text.indexOf("]") + 1;
+		        delimiter = text.substring(delimiterBeginIndex, delimiterEndIndex);
+		        numbers = text.substring(text.indexOf("\n") + 1);
+	    	}
+	    	else
+	    	{
+	    		int delimiterIndex = text.indexOf("//") + 2;
+		        delimiter = text.substring(delimiterIndex, delimiterIndex + 1);
+		        numbers = text.substring(text.indexOf("\n") + 1);
+	    	}
+	        
 	    }
 	   return add(numbers, delimiter);
 	}

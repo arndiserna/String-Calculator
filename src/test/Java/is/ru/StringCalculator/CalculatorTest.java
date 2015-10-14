@@ -59,4 +59,9 @@ public class CalculatorTest {
 	public final void testIfNumbersOverThousandAreIgnored() {
 	    assertEquals(5+2+1000, Calculator.add("5,2,1001,1000,2040"));
 	}
+	
+	@Test
+	public void testDelimiterOfAnyLength() {
+	    assertEquals(5+9+8, Calculator.add("//[***]\n5***9***8"));
+	}
 }
