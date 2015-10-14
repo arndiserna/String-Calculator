@@ -41,7 +41,10 @@ private static int sum(String[] numbers){
 			{
                 negativeNumbers.add(numberChecked);
             }
-    		total += numberChecked;
+    		else if (numberChecked <= 1000) 
+            {
+            	total += numberChecked;
+            }
     	}
 	}
     if (negativeNumbers.size() > 0) {
