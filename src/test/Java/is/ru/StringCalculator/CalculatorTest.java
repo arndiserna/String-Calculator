@@ -42,4 +42,16 @@ public class CalculatorTest {
 	public void testDelimiter() {
 	    assertEquals(3+6+10, Calculator.add("//;\n3;6;10"));
 	}
+	
+	@Test
+	public final void testExceptionForNegativeNumbers() {
+	    RuntimeException exception = null;
+	    try {
+	        Calculator.add("4,2,9,-1,11,-15");
+	    } catch (RuntimeException e) 
+	    {
+	        exception = e;
+	    }
+	    assertEquals("Negatives not allowed: [-1, -15]", exception.getMessage());
+	}
 }

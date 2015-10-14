@@ -1,4 +1,5 @@
 package is.ru.stringcalculator;
+import java.util.ArrayList;
 
 public class Calculator {
 
@@ -30,13 +31,22 @@ private static String[] splitNumbers(String numbers, String delimeter){
 
 private static int sum(String[] numbers){
 	int total = 0;
+	ArrayList<Integer> negativeNumbers = new ArrayList<Integer>();
 	
     for(String number : numbers){
     	if (!number.isEmpty())
     	{
-    		total += Integer.parseInt(number);
+    		int numberChecked = Integer.parseInt(number);
+            if (numberChecked < 0)
+			{
+                negativeNumbers.add(numberChecked);
+            }
+    		total += numberChecked;
     	}
 	}
+    if (negativeNumbers.size() > 0) {
+        throw new RuntimeException("Negatives not allowed: " + negativeNumbers.toString());
+    }
 	return total;
-}
+ }
 }
