@@ -31,4 +31,10 @@ public class CalculatorTest {
 		assertEquals(2+5+7+3, Calculator.add("2,5,7,3"));
 		assertEquals(8+7+1+2+6+4, Calculator.add("8,7,1,2,6,4"));
 	}
+	
+	@Test
+	public void testSpace() {
+		assertEquals(2+5+7+3, Calculator.add("2\n5,7,3"));
+		assertEquals(8+7+1+2+6+4, Calculator.add("8,7,1,2\n6,4"));
+	}
 }

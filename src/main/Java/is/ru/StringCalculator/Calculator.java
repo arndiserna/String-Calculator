@@ -8,7 +8,7 @@ public static int add(String text)
 	{
 		return 0;
 	}
-	else if(text.contains(","))
+	else if(text.contains(",")||text.contains("\n"))
 	{
 		return sum(splitNumbers(text));
 	}
@@ -16,7 +16,7 @@ public static int add(String text)
  }
 
 private static String[] splitNumbers(String numbers){
-    return numbers.split(",");
+    return numbers.split(",|\n");
 }
 
 private static int sum(String[] numbers){
