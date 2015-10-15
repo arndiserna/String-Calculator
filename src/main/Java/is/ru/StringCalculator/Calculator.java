@@ -3,8 +3,7 @@ import java.util.ArrayList;
 
 public class Calculator {
 
-public static int add(String text)
- {
+public static int add(String text){
 	if(text.equals(""))
 	{
 		return 0;
@@ -18,7 +17,22 @@ private static String[] splitNumbers(String numbers, String delimeter){
 
 private static int sum(String[] numbers){
 	int total = 0;
-	ArrayList<Integer> negativeNumbers = new ArrayList<Integer>();
+	
+    for(String number : numbers){
+    	if (!number.isEmpty())
+    	{
+    		checkForNegatives(numbers);
+            if (checkOverThousand(number)) 
+            {
+            	total += Integer.parseInt(number);
+            }
+    	}
+	}
+	return total;
+  }
+
+private static void checkForNegatives(String[] numbers){
+ArrayList<Integer> negativeNumbers = new ArrayList<Integer>();
 	
     for(String number : numbers){
     	if (!number.isEmpty())
@@ -28,15 +42,18 @@ private static int sum(String[] numbers){
             {
                 negativeNumbers.add(numberChecked);
             }
-            else if (numberChecked <= 1000) 
-            {
-            	total += numberChecked;
-            }
     	}
 	}
     if (negativeNumbers.size() > 0) {
         throw new RuntimeException("Negatives not allowed: " + negativeNumbers.toString());
     }
-	return total;
-  }
+ }
+
+private static boolean checkOverThousand(String number){
+	if(Integer.parseInt(number) <= 1000)
+	{
+		return true;
+	}
+  return false;
+ }
 }
