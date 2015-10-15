@@ -3,37 +3,13 @@ import java.util.ArrayList;
 
 public class Calculator {
 
-public static int add(String text) 
-{
-	String delimiter = ",|\n";
-	String numbers = text;
-	    if (text.startsWith("//")) 
-	    {
-	    	if(text.contains("["))
-	    	{
-	    		int delimiterBeginIndex = text.indexOf("[");
-	    		int delimiterEndIndex = text.indexOf("]") + 1;
-		        delimiter = text.substring(delimiterBeginIndex, delimiterEndIndex);
-		        numbers = text.substring(text.indexOf("\n") + 1);
-	    	}
-	    	else
-	    	{
-	    		int delimiterIndex = text.indexOf("//") + 2;
-		        delimiter = text.substring(delimiterIndex, delimiterIndex + 1);
-		        numbers = text.substring(text.indexOf("\n") + 1);
-	    	}
-	        
-	    }
-	   return add(numbers, delimiter);
-	}
-
-public static int add(String text, String delimeter)
+public static int add(String text)
  {
 	if(text.equals(""))
 	{
 		return 0;
 	}
-	return sum(splitNumbers(text, delimeter));			
+	return sum(splitNumbers(text, "[^-0-9]"));			
  }
 
 private static String[] splitNumbers(String numbers, String delimeter){
@@ -48,11 +24,11 @@ private static int sum(String[] numbers){
     	if (!number.isEmpty())
     	{
     		int numberChecked = Integer.parseInt(number);
-            if (numberChecked < 0)
-			{
+            if (numberChecked < 0) 
+            {
                 negativeNumbers.add(numberChecked);
             }
-    		else if (numberChecked <= 1000) 
+            else if (numberChecked <= 1000) 
             {
             	total += numberChecked;
             }
@@ -62,5 +38,5 @@ private static int sum(String[] numbers){
         throw new RuntimeException("Negatives not allowed: " + negativeNumbers.toString());
     }
 	return total;
- }
+  }
 }
